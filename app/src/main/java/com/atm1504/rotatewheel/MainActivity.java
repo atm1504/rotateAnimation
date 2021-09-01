@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     Animation rotateAnimation;
     CircleImageView centerImage;
-    ImageView imageView;
+    //    ImageView imageView;
+    View circularView;
     List<Integer> images;
     Handler rotateHandler, imageHandler;
     Runnable rotateRunnable, imageRunnable;
@@ -32,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
+        circularView = (View) findViewById(R.id.circularLayout);
+
+//        imageView = (ImageView) findViewById(R.id.imageView);
         centerImage = (CircleImageView) findViewById(R.id.centerImage);
 //        images = {R.drawable.icon1};
         images = new ArrayList<Integer>();
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         images.add(R.drawable.icon4);
         images.add(R.drawable.icon5);
         images.add(R.drawable.icon6);
+        images.add(R.drawable.icon7);
+        images.add(R.drawable.icon8);
 
         // Initialise the handler
         imageHandler = new Handler();
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         centerImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(getBaseContext(), "Clicked for id: " + i, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Clicked for id: " + indexCLicked, Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "Clicked for id:" + indexCLicked);
             }
         });
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         rotateRunnable = new Runnable() {
             @Override
             public void run() {
-                imageView.startAnimation(rotateAnimation);
+                circularView.startAnimation(rotateAnimation);
                 rotateHandler.postDelayed(this, time);
             }
         };
