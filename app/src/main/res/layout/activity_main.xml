@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_star_128" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/centerImage"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:src="@drawable/icon1"

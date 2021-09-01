@@ -2,12 +2,15 @@ package com.atm1504.rotatewheel;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -20,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     List<Integer> images;
     Handler rotateHandler, imageHandler;
     Runnable rotateRunnable, imageRunnable;
-    int time = 3000;
+    int time = 7000;
+    int indexCLicked = 0;
+    private static final String TAG = "Atreyee";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imageView = (ImageView) findViewById(R.id.imageView);
+        centerImage = (CircleImageView) findViewById(R.id.centerImage);
+//        images = {R.drawable.icon1};
+        images = new ArrayList<Integer>();
         images.add(R.drawable.icon1);
         images.add(R.drawable.icon2);
         images.add(R.drawable.icon3);
@@ -38,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
         // Initialise the handler
         imageHandler = new Handler();
         rotateHandler = new Handler();
+
+        centerImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(getBaseContext(), "Clicked for id: " + i, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Clicked for id:" + indexCLicked);
+            }
+        });
 
         startAnimation();
     }
@@ -54,36 +70,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 imageView.startAnimation(rotateAnimation);
+                rotateHandler.postDelayed(this, time);
             }
         };
 
-        rotateHandler.postDelayed(rotateRunnable, time);
+        rotateHandler.postDelayed(rotateRunnable, 1);
     }
 
-//    Handler handler = new Handler();
-//    Runnable runnable = new Runnable() {
-//        int i = 0;
-//
-//        public void run() {
-//            imageView1.setImageResource(imageArray[i]);
-//            i++;
-//            if (i > imageArray.length - 1) {
-//                i = 0;
-//            }
-//            handler.postDelayed(this, 2000);
-//        }
-//    };
-//            handler.postDelayed(runnable, 2000);
-
     private void imageAnimation() {
-        // Think hhow u r going to handle the changing of image on center
+        imageRunnable = new Runnable() {
+            int i = 0;
 
-
+            @Override
+            public void run() {
+                centerImage.setImageResource(images.get(i));
+                indexCLicked = i;
+                i++;
+                if (i >= images.size()) {
+                    i = 0;
+                }
+                imageHandler.postDelayed(this, time / images.size());
+            }
+        };
+        imageHandler.postDelayed(imageRunnable, 10);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         rotateHandler.removeCallbacks(rotateRunnable);
+        imageHandler.removeCallbacks(imageRunnable);
     }
 }
