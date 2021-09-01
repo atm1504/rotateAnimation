@@ -14,14 +14,14 @@
 
             android:layout_centerInParent="true">
 
-            <RelativeLayout
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/big"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/round_ball" />
 
-            <RelativeLayout
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/northwest"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -30,7 +30,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/round_ball" />
 
-            <RelativeLayout
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/southeast"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -38,7 +38,7 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/round_ball" />
 
-            <RelativeLayout
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/southwest"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -46,7 +46,7 @@
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/round_ball" />
 
-            <RelativeLayout
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/northeast"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -56,7 +56,7 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/right"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -65,7 +65,7 @@
             android:layout_toRightOf="@+id/rlBig"
             android:background="@drawable/round_ball" />
 
-        <RelativeLayout
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/left"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -74,7 +74,7 @@
             android:layout_toLeftOf="@+id/rlBig"
             android:background="@drawable/round_ball" />
 
-        <RelativeLayout
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/top"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -83,7 +83,7 @@
             android:layout_marginBottom="-15dp"
             android:background="@drawable/round_ball" />
 
-        <RelativeLayout
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/bottom"
             android:layout_width="50dp"
             android:layout_height="50dp"
